@@ -74,6 +74,25 @@ The project derives its version with `setuptools-scm` (`[tool.setuptools_scm] fa
 `10000.dev6469+g5c1ff1cb2`; with no `.git` at all it falls back to `9999`. Neither errors, and no
 test reads xarray's own version, so **no tags were pushed**.
 
+## Held-out tests
+
+The commit that carries this file also adds the test halves of eight upstream fixes, applied to
+the frozen tree **in history order** (two of them take an earlier one's additions as patch
+context). The corresponding code halves are **not** present — that is the work.
+
+| item | upstream issue | test files touched |
+|---|---|---|
+| 1 | #11462 | `xarray/tests/test_computation.py` |
+| 2 | #9969  | `xarray/tests/test_indexes.py` |
+| 3 | #11238 | `xarray/tests/test_groupby.py` |
+| 4 | #10194 | `xarray/tests/test_coordinates.py`, `test_dataset.py`, `test_variable.py` |
+| 5 | #11341 | `xarray/tests/test_dataarray.py` |
+| 6 | #11452 | `xarray/tests/test_plot.py` |
+| 7 | #10305 | `xarray/tests/test_conventions.py` |
+| 8 | #11518 | `xarray/tests/test_groupby.py`, `test_rolling.py` |
+
+This commit is **`base_commit`**. The freeze commit below it is not.
+
 ## Reproducing the environment
 
 ```
